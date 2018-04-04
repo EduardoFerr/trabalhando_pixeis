@@ -1,16 +1,7 @@
 # trabalhando_pixeis
 Uma demonstração de como trabalhar pixel a pixel usando o 'ImageData object'
-            
-                  
-                    <div> <div style="text-align: right;" class="prevnext">
-    <p><a href="/en-US/docs/Web/API/Canvas_API/Tutorial/Advanced_animations" style="float: left;">« Previous</a><a href="/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility">Next  »</a></p>
-</div></div>
-
-<div class="summary">
-<p>Até agora não vimos os pixels reais da nossa tela. Com o objeto ImageData, você pode ler e gravar diretamente um array de dados para manipular dados de pixel. Também veremos como a suavização de imagem (anti-aliasing) pode ser controlada e como salvar imagens de sua tela.</p>
-</div>
-
-<h2 id="The_ImageData_object">The <code>ImageData</code> object</h2>
+        
+<h2 id="The_ImageData_object">O objeto <code>ImageData</code></h2>
 
 <p>o <a href="/en-US/docs/Web/API/ImageData" title="The ImageData interface represents the underlying pixel data of an area of a <canvas> element. It is created using the ImageData() constructor or creator methods on the CanvasRenderingContext2D object associated with a canvas: createImageData() and getImageData(). It can also be used to set a part of the canvas by using putImageData()."><code>ImageData</code></a> objeto representa os dados de pixel subjacentes de uma área de um objeto de tela. Ele contém os seguintes atributos somente leitura:</p>
 
