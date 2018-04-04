@@ -17,7 +17,7 @@
 
 <p>A propriedade data retorna um Uint8ClampedArray que pode ser acessado para examinar os dados brutos do pixel; Cada pixel é representado por quatro valores de um byte (vermelho, verde, azul e alfa, nessa ordem; isto é, formato "RGBA"). Cada componente de cor é representado por um número inteiro entre 0 e 255. Cada componente recebe um índice consecutivo dentro da matriz, com o componente vermelho do pixel superior esquerdo no índice 0 da matriz. Os pixels seguem da esquerda para a direita e depois para baixo, em todo o array.</p>
 
-<p>O Uint8ClampedArray contém altura × largura × 4 bytes de dados, com valores de índice variando de 0 a (altura × largura × 4) -1.</p>
+>O Uint8ClampedArray contém altura × largura × 4 bytes de dados, com valores de índice variando de 0 a (altura × largura × 4) -1.
 
 <p>Por exemplo, para ler o valor do componente azul do pixel na coluna 200, linha 50 na imagem, você faria o seguinte:</p>
 <code>blueComponent = imageData.data[((50 * (imageData.width * 4)) + (200 * 4)) + 2];</code>
