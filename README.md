@@ -1,6 +1,7 @@
 # Manipulando Pixeis com ImageData 
 
-[**Demonstração**: Negativando a Imagem](https://eduardoferr.github.io/trabalhando_pixeis)
+> [**Demonstração**: Negativando a Imagem, manipulando o ImageData com Javascript](https://eduardoferr.github.io/trabalhando_pixeis)
+
 
 <h2 id="The_ImageData_object">O objeto <code>ImageData</code></h2>
 
