@@ -1,6 +1,6 @@
 # trabalhando_pixeis
-Uma demonstração de como trabalhar pixel a pixel usando o 'ImageData object'
->        
+> Uma demonstração de como trabalhar pixel a pixel usando o 'ImageData object'
+
 <h2 id="The_ImageData_object">O objeto <code>ImageData</code></h2>
 
 <p>o <a href="https://developer.mozilla.org/en-US/docs/Web/API/ImageData" title="The ImageData interface represents the underlying pixel data of an area of a <canvas> element. It is created using the ImageData() constructor or creator methods on the CanvasRenderingContext2D object associated with a canvas: createImageData() and getImageData(). It can also be used to set a part of the canvas by using putImageData()."><code>ImageData</code></a> objeto representa os dados de pixel subjacentes de uma área de um objeto de tela. Ele contém os seguintes atributos somente leitura:</p>
