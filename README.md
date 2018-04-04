@@ -1,5 +1,6 @@
-# trabalhando_pixeis
-> Uma demonstração de como trabalhar pixel a pixel usando o 'ImageData object'
+# Manipulando Pixeis com ImageData 
+
+[**Demo**: Negativando a Imagem](https://eduardoferr.github.io/trabalhando_pixeis)
 
 <h2 id="The_ImageData_object">O objeto <code>ImageData</code></h2>
 
