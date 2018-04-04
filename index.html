@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <header name="Access-Control-Allow-Origin" value="*" />
+
+    <title>Negativando a Imagem</title>
+</head>
+
+<body>
+    <h3>Negativando a Imagem</h3>
+    <p>A cor da imagem será invertida pixel a pixel em uma taxa de 60 fps</p>
+    <div id='color'></div>
+    <canvas>Seu navegador não suporta canvas. Tente um navegador mais atual.</canvas>
+    <input type="file" id="foto">
+    <p>Passe o mause sobre a imagem para colorir a 'div' com um pixel</p>
+    <style>
+        html>* {
+            display: flex;
+            justify-content: center;
+        }
+
+
+        body>* {
+            width: 20%;
+
+        }
+
+        canvas>* {
+            width: inherit;
+            height: 100%;
+        }
+
+        input {
+            width: 100%;
+        }
+    </style>
+
+    <script type="text/javascript"> 
+        (function (global) {
+            var doc = global.document,
+                win = global.window,
+                canvas = doc.querySelector('canvas'),
+                color = doc.querySelector('input'),
+                ctx = canvas.getContext('2d'),
+                color = doc.getElementById('color'),
+                lastTime,
+                i = 0;
+
+            //Um pequeno motor.
+            function main() {
+                trabalharImagem();
+                i++;
+                win.requestAnimationFrame(main);  //Isso faz um loop com main() a 60fps
+            }
+
+            function trabalharImagem() {
+                var area = ctx.getImageData(0, 0, canvas.width, canvas.height);//ImageData ctx.getImageData(sx, sy, sw, sh);
+                var numeroDePixeis = win.imagem.data.length / 4;
+                if (i < numeroDePixeis) {
+                    //area.data[i * 4 + ?] - Esse bloco altera o Green e Alpha (setando 255 para eles), tornando os pixeis esverdeados
+                    var data1 = i * 4;
+                    var data2 = (numeroDePixeis - i) * 4;
+                    area.data[data1 + 0] = 255 - win.imagem.data[data1 + 0]; //R
+                    area.data[data1 + 1] = 255 - win.imagem.data[data1 + 1]; //G
+                    area.data[data1 + 2] = 255 - win.imagem.data[data1 + 2]; //B
+                    area.data[data1 + 3] = win.imagem.data[data1 + 3]; //A
+
+                }
+                var rgba = 'rgba(' +
+                    win.imagem.data[data1 + 0] + ', ' +
+                    win.imagem.data[data1 + 1] + ', ' +
+                    win.imagem.data[data1 + 2] + ', ' +
+                    (win.imagem.data[data1 + 3] / 255) + ')';
+
+                color.textContent = "Cor do pixel atual: " + rgba + " - Pixeis restantes: " + (numeroDePixeis - i);
+
+                ctx.putImageData(area, 0, 0);
+            }
+
+            function pegarPixel(event) {
+                var x = event.layerX;
+                var y = event.layerY;
+                var pixel = ctx.getImageData(x, y, 1, 1);
+                var data = pixel.data;
+                var rgba = 'rgba(' + data[0] + ', ' + data[1] +
+                    ', ' + data[2] + ', ' + (data[3] / 255) + ')';
+                color.style.background = rgba;
+                color.textContent = "Cor do pixel atual: " + rgba + " - Pixeis restantes: " + (numeroDePixeis - i); color.textContent = rgba + " - Pixeis já trabalhados: " + i;
+            }
+
+
+            //Evento esculta o carregamento de novas fotos
+            function manipularFoto(evento) {
+                var foto = evento.target.files[0];
+                var reader = new FileReader();
+                reader.onload = function (fileObject) {
+                    var data = fileObject.target.result,
+                        imagem = new Image();
+
+                    imagem.onload = function () {
+                        canvas.width = imagem.width;
+                        canvas.height = imagem.height;
+                        console.log("imagem lida");
+                        win.imageSrc = this;
+                        pintar(win.imageSrc);
+                    }
+
+                    imagem.src = data;
+
+                };
+
+                reader.readAsDataURL(foto);
+
+            }
+
+            //Função responsável por pintar a nova foto no canvas
+            function pintar(foto) {
+                //Get o contexto 2d
+
+
+                if (foto != null) {
+                    let canvas = doc.querySelector('canvas'),
+                        ctx = canvas.getContext('2d');
+                    ctx.beginPath();
+                    ctx.drawImage(foto, 0, 0, canvas.width, canvas.height);
+                    win.imagem = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    win.area = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    i = 0;
+                    main();
+                }
+
+            }
+
+            foto.addEventListener('change', manipularFoto, false);
+            canvas.addEventListener('mousemove', pegarPixel);
+            global.ctx = ctx;
+        })(this);
+
+    </script>
+</body>
+
+</html>
